@@ -67,13 +67,16 @@ Use this exact structure:
 {{"id":"unique_english_id","title":"한국어 제목 20자 이하","heroTitle":"제목<br>2줄","heroSub":"부제목<br>설명","emoji":"🎯","thumbColor":1,"badge":"NEW","categories":["성격"],"participantsLabel":"🔥 1.2만명","estimatedMinutes":2,"questions":[{{"emoji":"😊","text":"질문 내용","answers":[{{"text":"답변1","scores":{{"a":3,"b":1}}}},{{"text":"답변2","scores":{{"b":3,"c":1}}}},{{"text":"답변3","scores":{{"c":3,"d":1}}}},{{"text":"답변4","scores":{{"d":3,"a":1}}}}]}}],"results":[{{"id":"a","emoji":"🌟","title":"당신은 <em>'결과 제목'</em> 같은 사람!","desc":"3문장 설명","chemistry":{{"good":{{"emoji":"😊","name":"잘맞는유형"}},"bad":{{"emoji":"😤","name":"안맞는유형"}}}}}}]}}
 
 STRICT RULES:
+STRICT RULES:
 1. questions = exactly 5 items
-2. results = exactly 4 items  
-3. categories: choose from [연애, 성격, 회사생활, B급감성, MBTI, 음식]
-4. thumbColor: integer 1-8
-5. NO // comments anywhere in JSON
-6. ALL strings use double quotes only
-7. Output ONLY the JSON object, nothing else"""
+2. results = exactly 4 items
+3. result id values must be exactly: "type_a", "type_b", "type_c", "type_d"
+4. scores keys must ONLY use these exact values: "type_a", "type_b", "type_c", "type_d"
+5. categories: choose from [연애, 성격, 회사생활, B급감성, MBTI, 음식]
+6. thumbColor: integer 1-8
+7. NO // comments anywhere in JSON
+8. ALL strings use double quotes only
+9. Output ONLY the JSON object, nothing else"""
 
     try:
         res = requests.post(
