@@ -143,9 +143,9 @@ def generate_with_claude(topic: str) -> dict:
         text = re.sub(r'^```\s*', '', text)
         text = re.sub(r'\s*```$', '', text)
         data = json.loads(text)
-data["thumbColor"] = random.randint(1, 8)  # ← 이 줄 추가
-print(f"✅ Claude API 생성 완료: {data.get('title')}")
-return data
+        data["thumbColor"] = random.randint(1, 8)  # ← 이 줄 추가
+        print(f"✅ Claude API 생성 완료: {data.get('title')}")
+        return data
     except Exception as e:
         print(f"⚠️  Claude API 실패: {e}. 내장 템플릿 사용.")
         return build_fallback_test()
