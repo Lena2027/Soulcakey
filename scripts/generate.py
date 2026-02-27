@@ -144,7 +144,7 @@ def generate_with_claude(topic: str) -> dict:
         text = re.sub(r'^```json\s*', '', text)
         text = re.sub(r'^```\s*', '', text)
         text = re.sub(r'\s*```$', '', text)
-        text = _re.sub(r'//.*?\n', '\n', text)  # 주석 제거
+        text = re.sub(r'//.*?\n', '\n', text)  # 주석 제거
         data = json.loads(text)
         data["thumbColor"] = random.randint(1, 8)  # ← 이 줄 추가
         print(f"✅ Claude API 생성 완료: {data.get('title')}")
