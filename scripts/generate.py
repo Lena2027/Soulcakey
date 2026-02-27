@@ -121,7 +121,9 @@ def generate_with_claude(topic: str) -> dict:
 - questions는 정확히 5개
 - results는 정확히 4개
 - 카테고리는 다음 중 선택: 연애, 성격, 회사생활, B급감성, MBTI, 음식
-- 재미있고 공감 가는 한국어 콘텐츠로 작성"""
+- 재미있고 공감 가는 한국어 콘텐츠로 작성
+- 반드시 완전한 JSON만 출력하고 중간에 주석(//)을 절대 넣지 마세요
+- 모든 문자열에서 작은따옴표 대신 큰따옴표만 사용하세요"""
 
     headers = {
         "x-api-key": ANTHROPIC_API_KEY,
@@ -142,6 +144,7 @@ def generate_with_claude(topic: str) -> dict:
         text = re.sub(r'^```json\s*', '', text)
         text = re.sub(r'^```\s*', '', text)
         text = re.sub(r'\s*```$', '', text)
+        text = _re.sub(r'//.*?\n', '\n', text)  # 주석 제거
         data = json.loads(text)
         data["thumbColor"] = random.randint(1, 8)  # ← 이 줄 추가
         print(f"✅ Claude API 생성 완료: {data.get('title')}")
