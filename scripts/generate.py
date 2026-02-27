@@ -343,17 +343,17 @@ def update_google_sheets(data: dict):
         ]
         # 헤더가 없으면 첫 행에 헤더 추가
         existing = service.spreadsheets().values().get(
-            spreadsheetId=SHEETS_ID, range="시트1!A1:A1"
+            spreadsheetId=SHEETS_ID, range="SOULCAKEY 발행기록!A1:A1"
         ).execute()
         if not existing.get("values"):
             header = [["날짜", "테스트ID", "제목", "카테고리", "질문수", "결과수", "뱃지", "상태"]]
             service.spreadsheets().values().update(
-                spreadsheetId=SHEETS_ID, range="시트1!A1",
+                spreadsheetId=SHEETS_ID, range="SOULCAKEY 발행기록!A1",
                 valueInputOption="USER_ENTERED", body={"values": header}
             ).execute()
 
         service.spreadsheets().values().append(
-            spreadsheetId=SHEETS_ID, range="시트1!A:H",
+            spreadsheetId=SHEETS_ID, range="SOULCAKEY 발행기록!A:H",
             valueInputOption="USER_ENTERED", body={"values": [row]}
         ).execute()
 
