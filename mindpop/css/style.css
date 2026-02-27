@@ -244,14 +244,14 @@ body::after {
   overflow: hidden;
 }
 /* 썸네일 그라데이션 팔레트 (thumb-color 1~8) */
-.thumb-1 { background: linear-gradient(135deg, #1a0533, #4d0e6e); }
-.thumb-2 { background: linear-gradient(135deg, #001a33, #003d82); }
-.thumb-3 { background: linear-gradient(135deg, #1a0a00, #662200); }
-.thumb-4 { background: linear-gradient(135deg, #001a10, #004d24); }
-.thumb-5 { background: linear-gradient(135deg, #1a1500, #664a00); }
-.thumb-6 { background: linear-gradient(135deg, #0d001a, #330040); }
-.thumb-7 { background: linear-gradient(135deg, #001a1a, #004d4d); }
-.thumb-8 { background: linear-gradient(135deg, #1a001a, #4d004d); }
+.thumb-1 { background: linear-gradient(135deg, #ff6b6b, #ee0979); }
+.thumb-2 { background: linear-gradient(135deg, #4d96ff, #0052d4); }
+.thumb-3 { background: linear-gradient(135deg, #f7971e, #ffd200); }
+.thumb-4 { background: linear-gradient(135deg, #8B4513, #D2691E); }
+.thumb-5 { background: linear-gradient(135deg, #c471ed, #7b2ff7); }
+.thumb-6 { background: linear-gradient(135deg, #f9a8d4, #ec4899); }
+.thumb-7 { background: linear-gradient(135deg, #e0e0e0, #ffffff); }
+.thumb-8 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
 
 .card-hot {
   position: absolute;
