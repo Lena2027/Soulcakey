@@ -19,6 +19,7 @@ SHEETS_ID         = os.environ.get("GOOGLE_SHEETS_ID", "")
 SERVICE_ACCOUNT   = os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON", "")
 TOPIC             = os.environ.get("TOPIC", "자동 검색")
 TODAY             = datetime.now().strftime("%Y-%m-%d")
+TIMESTAMP         = datetime.now().strftime("%Y%m%d%H%M%S")
 SITE_DIR          = "mindpop"
 TESTS_DIR         = f"{SITE_DIR}/tests"
 
@@ -128,7 +129,7 @@ def generate_with_claude(topic: str) -> dict:
         "content-type": "application/json"
     }
     payload = {
-        "model": "claude-haiku-4-5-20251001",
+        "model": "claude-haiku-4-5",
         "max_tokens": 3000,
         "messages": [{"role": "user", "content": prompt}]
     }
@@ -152,7 +153,7 @@ def generate_with_claude(topic: str) -> dict:
 def build_fallback_test() -> dict:
     """API 없이 사용하는 기본 내장 테스트"""
     return {
-        "id": f"test_{TODAY.replace('-', '')}",
+        "id": f"test_{TIMESTAMP}",
         "title": "당신은 어떤 계절 같은 사람인가요?",
         "heroTitle": "당신은 어떤<br>계절 같은 사람인가요?",
         "heroSub": "5가지 질문으로 알아보는<br>나의 숨겨진 계절 성격",
