@@ -40,7 +40,7 @@ jobs:
         run: |
           git config --global user.name "SOULCAKEY Bot"
           git config --global user.email "bot@soulcakey.com"
-          git add soulcakey/mindpop/tests/ soulcakey/mindpop/index.html
+          git add mindpop/tests/ mindpop/index.html
           git diff --staged --quiet || git commit -m "🧠 새 심리테스트 추가 $(date '+%Y-%m-%d')"
           git push
 
@@ -48,5 +48,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./soulcakey/mindpop
+          publish_dir: ./mindpop
           commit_message: "🚀 SOULCAKEY 배포 $(date '+%Y-%m-%d')"
