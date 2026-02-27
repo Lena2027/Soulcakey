@@ -8,7 +8,7 @@ SOULCAKEY 심리테스트 자동화 스크립트
 4. index.html에 새 테스트 <script> 태그 자동 삽입
 """
 
-import os, json, re, sys
+import os, json, re, sys, random
 import requests
 from datetime import datetime
 
@@ -143,8 +143,9 @@ def generate_with_claude(topic: str) -> dict:
         text = re.sub(r'^```\s*', '', text)
         text = re.sub(r'\s*```$', '', text)
         data = json.loads(text)
-        print(f"✅ Claude API 생성 완료: {data.get('title')}")
-        return data
+data["thumbColor"] = random.randint(1, 8)  # ← 이 줄 추가
+print(f"✅ Claude API 생성 완료: {data.get('title')}")
+return data
     except Exception as e:
         print(f"⚠️  Claude API 실패: {e}. 내장 템플릿 사용.")
         return build_fallback_test()
