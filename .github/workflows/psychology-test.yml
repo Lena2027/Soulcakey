@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: 📥 저장소 체크아웃
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: 🐍 Python 설치
         uses: actions/setup-python@v5
@@ -36,16 +38,16 @@ jobs:
           TOPIC: ${{ github.event.inputs.topic }}
         run: python scripts/generate.py
 
-      - name: 📤 변경사항 커밋 & 푸시 (main)
+      - name: 📤 변경사항 커밋 & 푸시
         run: |
           git config --global user.name "SOULCAKEY Bot"
           git config --global user.email "bot@soulcakey.com"
+          git pull origin main --strategy-option=theirs
           git add mindpop/tests/ mindpop/index.html
           git diff --staged --quiet || git commit -m "🧠 새 심리테스트 추가 $(date '+%Y-%m-%d')"
-          git pull --rebase origin main
-          git push
+          git push origin main
 
-      - name: 🚀 gh-pages 브랜치로 배포
+      - name: 🚀 gh-pages 배포
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
