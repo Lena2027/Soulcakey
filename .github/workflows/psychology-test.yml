@@ -19,6 +19,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: main
 
       - name: 🐍 Python 설치
         uses: actions/setup-python@v5
@@ -42,10 +43,13 @@ jobs:
         run: |
           git config --global user.name "SOULCAKEY Bot"
           git config --global user.email "bot@soulcakey.com"
-          git pull origin main --strategy-option=theirs
           git add mindpop/tests/ mindpop/index.html
-          git diff --staged --quiet || git commit -m "🧠 새 심리테스트 추가 $(date '+%Y-%m-%d')"
-          git push origin main
+          if git diff --staged --quiet; then
+            echo "변경사항 없음"
+          else
+            git commit -m "🧠 새 심리테스트 추가 $(date '+%Y-%m-%d')"
+            git push origin HEAD:main --force-with-lease
+          fi
 
       - name: 🚀 gh-pages 배포
         uses: peaceiris/actions-gh-pages@v4
