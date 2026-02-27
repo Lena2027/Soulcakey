@@ -42,12 +42,11 @@ jobs:
           git config --global user.email "bot@soulcakey.com"
           git add mindpop/tests/ mindpop/index.html
           git diff --staged --quiet || git commit -m "🧠 새 심리테스트 추가 $(date '+%Y-%m-%d')"
-        git pull --rebase origin main
-git push
+          git pull --rebase origin main
+          git push
 
       - name: 🚀 gh-pages 브랜치로 배포
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./mindpop
-          commit_message: "🚀 SOULCAKEY 배포 $(date '+%Y-%m-%d')"
