@@ -51,19 +51,6 @@ jobs:
             git push origin HEAD:main --force-with-lease
           fi
 
-      - name: 📊 대시보드 데이터 생성
-        run: python scripts/generate_dashboard.py
-
-      - name: 💾 대시보드 커밋 & 푸시
-        run: |
-          git add dashboard/
-          if git diff --staged --quiet; then
-            echo "변경사항 없음"
-          else
-            git commit -m "📊 대시보드 업데이트 $(date '+%Y-%m-%d')"
-            git push origin HEAD:main --force-with-lease
-          fi
-
       - name: 🚀 gh-pages 배포
         uses: peaceiris/actions-gh-pages@v4
         with:
