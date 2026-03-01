@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOULCAKEY Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0c12;
+    --surface: #14141e;
+    --card: #1c1c28;
+    --border: #2a2a3d;
+    --accent: #a78bfa;
+    --accent2: #34d399;
+    --accent3: #fb923c;
+    --accent4: #38bdf8;
+    --text: #e8e8f5;
+    --text-dim: #6b6b85;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+  }
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(rgba(167,139,250,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(167,139,250,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events:none; z-index:0;
+  }
+
+  /* ── Header ── */
+  header {
+    position: relative; z-index:10;
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items:center; justify-content:space-between;
+    background: rgba(12,12,18,0.9);
+    backdrop-filter: blur(12px);
+    position: sticky; top:0;
+  }
+  .logo { font-size:20px; font-weight:800; letter-spacing:-0.5px; }
+  .logo span { color: var(--accent); }
+  .header-right {
+    font-family:'DM Mono',monospace; font-size:11px; color:var(--text-dim);
+    display:flex; align-items:center; gap:16px;
+  }
+  .live-dot {
+    width:8px; height:8px; border-radius:50%;
+    background:var(--accent2); display:inline-block;
+    margin-right:6px; animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+
+  /* ── Main ── */
+  main {
+    position:relative; z-index:1;
+    max-width: 1200px; margin: 0 auto;
+    padding: 32px 32px;
+  }
+
+  /* ── Stats row ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    position: relative; overflow:hidden;
+  }
+  .stat-card::after {
+    content:'';
+    position:absolute; top:0; left:0; right:0; height:2px;
+    background: var(--stat-color);
+  }
+  .stat-label {
+    font-family:'DM Mono',monospace; font-size:10px;
+    color:var(--text-dim); letter-spacing:1.5px; margin-bottom:10px;
+  }
+  .stat-value {
+    font-size:36px; font-weight:800;
+    color: var(--stat-color); line-height:1;
+  }
+  .stat-sub {
+    font-family:'DM Mono',monospace; font-size:10px;
+    color:var(--text-dim); margin-top:6px;
+  }
+
+  /* ── Section title ── */
+  .section-title {
+    font-family:'DM Mono',monospace; font-size:11px;
+    color:var(--text-dim); letter-spacing:2px;
+    margin-bottom:16px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .section-title span { color:var(--accent); }
+
+  /* ── Filter tabs ── */
+  .filter-bar {
+    display:flex; gap:8px; flex-wrap:wrap;
+    margin-bottom:24px;
+  }
+  .filter-btn {
+    padding: 6px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text-dim);
+    font-family:'DM Mono',monospace; font-size:11px;
+    cursor:pointer; transition:all 0.2s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(167,139,250,0.08);
+  }
+
+  /* ── Test grid ── */
+  .test-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .test-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    transition: all 0.2s;
+    cursor: default;
+    animation: fadeIn 0.4s ease both;
+  }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+  .test-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px -8px rgba(167,139,250,0.2);
+  }
+  .test-card-top {
+    display:flex; align-items:flex-start; justify-content:space-between;
+    margin-bottom:12px;
+  }
+  .test-emoji { font-size:28px; }
+  .badge {
+    font-family:'DM Mono',monospace; font-size:9px;
+    padding: 3px 8px; border-radius:20px; font-weight:700;
+  }
+  .badge-HOT { background:rgba(251,146,60,0.15); color:var(--accent3); border:1px solid rgba(251,146,60,0.3); }
+  .badge-NEW { background:rgba(52,211,153,0.15); color:var(--accent2); border:1px solid rgba(52,211,153,0.3); }
+  .test-title {
+    font-size:14px; font-weight:700; line-height:1.4;
+    margin-bottom:10px;
+  }
+  .test-cats {
+    display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px;
+  }
+  .test-cat {
+    font-family:'DM Mono',monospace; font-size:9px;
+    padding:2px 8px; border-radius:10px;
+    background:rgba(167,139,250,0.08); color:var(--accent);
+    border:1px solid rgba(167,139,250,0.2);
+  }
+  .test-meta {
+    display:flex; gap:12px;
+    font-family:'DM Mono',monospace; font-size:10px; color:var(--text-dim);
+    border-top:1px solid var(--border); padding-top:10px;
+  }
+  .test-meta-item { display:flex; align-items:center; gap:4px; }
+
+  /* ── Empty state ── */
+  .empty {
+    text-align:center; padding:60px 20px;
+    color:var(--text-dim); font-family:'DM Mono',monospace; font-size:13px;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align:center; padding:24px;
+    font-family:'DM Mono',monospace; font-size:11px; color:var(--text-dim);
+    border-top:1px solid var(--border);
+  }
+  .footer span { color:var(--accent); }
+
+  /* ── Loading ── */
+  #loading {
+    text-align:center; padding:80px 20px;
+    font-family:'DM Mono',monospace; color:var(--text-dim);
+  }
+  .spinner {
+    width:32px; height:32px; border:2px solid var(--border);
+    border-top-color:var(--accent); border-radius:50%;
+    animation: spin 0.8s linear infinite; margin:0 auto 16px;
+  }
+  @keyframes spin { to{transform:rotate(360deg)} }
+
+  @media(max-width:768px) {
+    header { padding:16px 20px; }
+    main { padding:20px 16px; }
+    .stats-row { grid-template-columns:repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">SOUL<span>CAKEY</span></div>
+  <div class="header-right">
+    <span><span class="live-dot"></span>LIVE</span>
+    <span id="generated-time">—</span>
+  </div>
+</header>
+
+<main>
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-card" style="--stat-color:var(--accent)">
+      <div class="stat-label">TOTAL TESTS</div>
+      <div class="stat-value" id="stat-total">—</div>
+      <div class="stat-sub">발행된 테스트</div>
+    </div>
+    <div class="stat-card" style="--stat-color:var(--accent3)">
+      <div class="stat-label">HOT TESTS</div>
+      <div class="stat-value" id="stat-hot">—</div>
+      <div class="stat-sub">인기 테스트</div>
+    </div>
+    <div class="stat-card" style="--stat-color:var(--accent2)">
+      <div class="stat-label">NEW TESTS</div>
+      <div class="stat-value" id="stat-new">—</div>
+      <div class="stat-sub">신규 테스트</div>
+    </div>
+    <div class="stat-card" style="--stat-color:var(--accent4)">
+      <div class="stat-label">CATEGORIES</div>
+      <div class="stat-value" id="stat-cats">—</div>
+      <div class="stat-sub">카테고리 수</div>
+    </div>
+  </div>
+
+  <!-- Filter -->
+  <div class="section-title">
+    <span>// TEST LIST</span>
+    <span id="filter-count"></span>
+  </div>
+  <div class="filter-bar" id="filter-bar">
+    <button class="filter-btn active" onclick="filterTests('ALL')">전체</button>
+  </div>
+
+  <!-- Grid -->
+  <div id="loading">
+    <div class="spinner"></div>
+    데이터 불러오는 중...
+  </div>
+  <div class="test-grid" id="test-grid" style="display:none"></div>
+</main>
+
+<div class="footer">
+  SOULCAKEY Dashboard · 자동 생성됨 · <span>github.com/Lena2027/Soulcakey</span>
+</div>
+
+<script src="./dashboard-data.js"></script>
+<script>
+let allTests = [];
+let activeFilter = 'ALL';
+
+const THUMB_COLORS = ['#a78bfa','#fb923c','#34d399','#38bdf8','#f472b6','#facc15','#818cf8','#2dd4bf'];
+
+function loadData() {
+
+
+
+
+  return window.DASHBOARD_DATA || null;
+
+
+  }
+}
+
+function renderStats(data) {
+  const tests = data.tests;
+  document.getElementById('stat-total').textContent = data.totalTests;
+  document.getElementById('stat-hot').textContent = tests.filter(t => t.badge === 'HOT').length;
+  document.getElementById('stat-new').textContent = tests.filter(t => t.badge === 'NEW').length;
+
+  const cats = new Set(tests.flatMap(t => t.categories || []));
+  document.getElementById('stat-cats').textContent = cats.size;
+  document.getElementById('generated-time').textContent = data.generated ? data.generated.slice(0,10) + ' 업데이트' : '';
+}
+
+function renderFilters(tests) {
+  const cats = ['ALL', ...new Set(tests.flatMap(t => t.categories || []))];
+  const bar = document.getElementById('filter-bar');
+  bar.innerHTML = '';
+  cats.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn' + (cat === 'ALL' ? ' active' : '');
+    btn.textContent = cat === 'ALL' ? '전체' : cat;
+    btn.onclick = () => filterTests(cat);
+    bar.appendChild(btn);
+  });
+}
+
+function filterTests(cat) {
+  activeFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent === (cat === 'ALL' ? '전체' : cat));
+  });
+
+  const filtered = cat === 'ALL' ? allTests : allTests.filter(t => (t.categories || []).includes(cat));
+  renderGrid(filtered);
+  document.getElementById('filter-count').textContent = filtered.length + '개';
+}
+
+function renderGrid(tests) {
+  const grid = document.getElementById('test-grid');
+  if (tests.length === 0) {
+    grid.innerHTML = '<div class="empty">테스트가 없습니다</div>';
+    return;
+  }
+
+  grid.innerHTML = tests.map((t, i) => {
+    const color = THUMB_COLORS[(t.thumbColor || 1) - 1] || THUMB_COLORS[0];
+    const badgeHtml = t.badge ? `<span class="badge badge-${t.badge}">${t.badge}</span>` : '';
+    const catsHtml = (t.categories || []).map(c => `<span class="test-cat">${c}</span>`).join('');
+
+    return `
+      <div class="test-card" style="animation-delay:${i * 0.04}s; border-left: 3px solid ${color}">
+        <div class="test-card-top">
+          <span class="test-emoji">${t.emoji || '🧠'}</span>
+          ${badgeHtml}
+        </div>
+        <div class="test-title">${t.title}</div>
+        <div class="test-cats">${catsHtml}</div>
+        <div class="test-meta">
+          <div class="test-meta-item">📝 ${t.questionCount || '?'}문항</div>
+          <div class="test-meta-item">🎯 ${t.resultCount || '?'}결과</div>
+          <div class="test-meta-item">⏱ ${t.estimatedMinutes || 2}분</div>
+          ${t.participantsLabel ? `<div class="test-meta-item">${t.participantsLabel}</div>` : ''}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function init() {
+  const data = loadData();
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('test-grid').style.display = 'grid';
+
+  if (!data) {
+    document.getElementById('test-grid').innerHTML = `
+      <div class="empty">
+        ⚠️ dashboard-data.js 파일이 없어요<br><br>
+        GitHub Actions를 실행하면 자동 생성됩니다
+      </div>`;
+    return;
+  }
+
+  allTests = data.tests;
+  renderStats(data);
+  renderFilters(allTests);
+  renderGrid(allTests);
+  document.getElementById('filter-count').textContent = allTests.length + '개';
+}
+
+init();
+</script>
+</body>
+</html>
