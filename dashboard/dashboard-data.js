@@ -1,6 +1,6 @@
 window.DASHBOARD_DATA = {
-  "generated": "2026-03-01 15:14:36",
-  "totalTests": 22,
+  "generated": "2026-03-01 15:17:53",
+  "totalTests": 23,
   "tests": [
     {
       "id": "coffee",
@@ -165,6 +165,22 @@ window.DASHBOARD_DATA = {
       "questionCount": 6,
       "resultCount": 4,
       "filename": "office",
+      "lastModified": "2026-03-01"
+    },
+    {
+      "id": "ramen_20260301151737",
+      "title": "당신은 어떤 음식 같은 사람?",
+      "emoji": "🍜",
+      "badge": "NEW",
+      "categories": [
+        "성격"
+      ],
+      "participantsLabel": "🔥 5.1만명",
+      "estimatedMinutes": 2,
+      "thumbColor": 6,
+      "questionCount": 0,
+      "resultCount": 0,
+      "filename": "ramen_20260301151737",
       "lastModified": "2026-03-01"
     },
     {
