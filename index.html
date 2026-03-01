@@ -1,166 +1,168 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SOULCAKEY — 당신을 알고 싶어요</title>
-<link href="https://fonts.googleapis.com/css2?family=Gmarket+Sans:wght@300;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOULCAKEY — 당신을 알고 싶어요</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Gmarket+Sans:wght@300;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-<!-- ─── GNB ─── -->
-<nav class="gnb">
-  <div class="logo" onclick="showPage('main')">
-    <div class="logo-dot"></div>
-    SOULCAKEY
-  </div>
-  <div class="gnb-right">
-    <div class="gnb-icon">🔍</div>
-  </div>
-</nav>
+  <!-- ─── GNB ─── -->
+  <nav class="gnb">
+    <div class="logo" onclick="showPage('main')">
+      <div class="logo-dot"></div>
+      SOULCAKEY
+    </div>
+    <div class="gnb-right">
+      <div class="gnb-icon">🔍</div>
+    </div>
+  </nav>
 
-<!-- ─────────────────────────────────────────
+  <!-- ─────────────────────────────────────────
      ① 메인 페이지
      카드/히어로는 main.js가 자동으로 채워줍니다.
 ───────────────────────────────────────────── -->
-<div id="page-main" class="page active">
+  <div id="page-main" class="page active">
 
-  <!-- 히어로 배너 (main.js가 채움) -->
-  <div class="hero" id="hero-banner">
-    <div class="hero-glow"></div>
-    <div class="hero-inner">
-      <div>
-        <div class="hero-badge">🔥 이번 주 인기 테스트</div>
-        <div class="hero-title" id="hero-title">로딩 중...</div>
-        <div class="hero-sub" id="hero-sub"></div>
-        <button class="btn-hero" id="hero-btn">지금 테스트하기 →</button>
-        <div class="hero-meta">
-          <span id="hero-participants"></span>
+    <!-- 히어로 배너 (main.js가 채움) -->
+    <div class="hero" id="hero-banner">
+      <div class="hero-glow"></div>
+      <div class="hero-inner">
+        <div>
+          <div class="hero-badge">🔥 이번 주 인기 테스트</div>
+          <div class="hero-title" id="hero-title">로딩 중...</div>
+          <div class="hero-sub" id="hero-sub"></div>
+          <button class="btn-hero" id="hero-btn">지금 테스트하기 →</button>
+          <div class="hero-meta">
+            <span id="hero-participants"></span>
+          </div>
         </div>
       </div>
+      <div class="hero-emoji" id="hero-emoji">⏳</div>
     </div>
-    <div class="hero-emoji" id="hero-emoji">⏳</div>
-  </div>
 
-  <!-- 카테고리 탭 -->
-  <div class="section">
-    <div class="categories">
-      <div class="cat-tag active"  onclick="filterCat(this, '전체')">#전체</div>
-      <div class="cat-tag"         onclick="filterCat(this, '연애')">#연애</div>
-      <div class="cat-tag"         onclick="filterCat(this, '성격')">#성격</div>
-      <div class="cat-tag"         onclick="filterCat(this, '회사생활')">#회사생활</div>
-      <div class="cat-tag"         onclick="filterCat(this, 'B급감성')">#B급감성</div>
-      <div class="cat-tag"         onclick="filterCat(this, 'MBTI')">#MBTI</div>
-      <div class="cat-tag"         onclick="filterCat(this, '음식')">#음식</div>
+    <!-- 카테고리 탭 -->
+    <div class="section">
+      <div class="categories">
+        <div class="cat-tag active" onclick="filterCat(this, '전체')">#전체</div>
+        <div class="cat-tag" onclick="filterCat(this, '연애')">#연애</div>
+        <div class="cat-tag" onclick="filterCat(this, '성격')">#성격</div>
+        <div class="cat-tag" onclick="filterCat(this, '회사생활')">#회사생활</div>
+        <div class="cat-tag" onclick="filterCat(this, 'B급감성')">#B급감성</div>
+        <div class="cat-tag" onclick="filterCat(this, 'MBTI')">#MBTI</div>
+        <div class="cat-tag" onclick="filterCat(this, '음식')">#음식</div>
+      </div>
+    </div>
+
+    <!-- 테스트 카드 그리드 (main.js가 채움) -->
+    <div class="section">
+      <div class="section-title">🎯 지금 뜨는 테스트</div>
+      <div class="test-grid" id="test-grid"></div>
     </div>
   </div>
 
-  <!-- 테스트 카드 그리드 (main.js가 채움) -->
-  <div class="section">
-    <div class="section-title">🎯 지금 뜨는 테스트</div>
-    <div class="test-grid" id="test-grid"></div>
-  </div>
-</div>
-
-<!-- ─────────────────────────────────────────
+  <!-- ─────────────────────────────────────────
      ② 테스트 진행 페이지
      engine.js가 동적으로 채워줍니다.
 ───────────────────────────────────────────── -->
-<div id="page-test" class="page">
-  <div class="test-wrap">
-    <div class="progress-area">
-      <div class="progress-label">
-        <span id="q-count">1 / 5</span>
-        <span id="q-percent">20%</span>
+  <div id="page-test" class="page">
+    <div class="test-wrap">
+      <div class="progress-area">
+        <div class="progress-label">
+          <span id="q-count">1 / 5</span>
+          <span id="q-percent">20%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill" style="width: 20%"></div>
+        </div>
       </div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progress-fill" style="width: 20%"></div>
+      <div class="question-area" id="question-area">
+        <span class="q-emoji" id="q-emoji"></span>
+        <div class="q-text" id="q-text"></div>
+        <div class="answers" id="answers"></div>
       </div>
-    </div>
-    <div class="question-area" id="question-area">
-      <span class="q-emoji" id="q-emoji"></span>
-      <div class="q-text"  id="q-text"></div>
-      <div class="answers" id="answers"></div>
     </div>
   </div>
-</div>
 
-<!-- ─────────────────────────────────────────
+  <!-- ─────────────────────────────────────────
      ③ 결과 페이지
      engine.js가 동적으로 채워줍니다.
 ───────────────────────────────────────────── -->
-<div id="page-result" class="page">
-  <div class="result-wrap">
-    <div class="result-card">
-      <div class="result-type-label" id="result-type-label"></div>
-      <span class="result-emoji"     id="result-emoji"></span>
-      <div class="result-title"      id="result-title"></div>
-      <div class="result-desc"       id="result-desc"></div>
-      <div class="chemistry">
-        <div class="chem-card chem-good">
-          <div class="chem-label">💚 잘 맞는 유형</div>
-          <span class="chem-emoji"  id="chem-good-emoji"></span>
-          <div class="chem-name"    id="chem-good-name"></div>
-        </div>
-        <div class="chem-card chem-bad">
-          <div class="chem-label">❤️‍🔥 안 맞는 유형</div>
-          <span class="chem-emoji"  id="chem-bad-emoji"></span>
-          <div class="chem-name"    id="chem-bad-name"></div>
+  <div id="page-result" class="page">
+    <div class="result-wrap">
+      <div class="result-card">
+        <div class="result-type-label" id="result-type-label"></div>
+        <span class="result-emoji" id="result-emoji"></span>
+        <div class="result-title" id="result-title"></div>
+        <div class="result-desc" id="result-desc"></div>
+        <div class="chemistry">
+          <div class="chem-card chem-good">
+            <div class="chem-label">💚 잘 맞는 유형</div>
+            <span class="chem-emoji" id="chem-good-emoji"></span>
+            <div class="chem-name" id="chem-good-name"></div>
+          </div>
+          <div class="chem-card chem-bad">
+            <div class="chem-label">❤️‍🔥 안 맞는 유형</div>
+            <span class="chem-emoji" id="chem-bad-emoji"></span>
+            <div class="chem-name" id="chem-bad-name"></div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="share-section">
-      <div class="share-title">친구에게 공유하기 👇</div>
-      <div class="share-buttons">
-        <button class="share-btn share-kakao"  onclick="shareKakao()">💬 카카오톡으로 공유</button>
-        <button class="share-btn share-link"   onclick="copyLink()">🔗 링크 복사</button>
-        <button class="share-btn share-image"  onclick="saveImage()">📸 이미지 저장</button>
+      <div class="share-section">
+        <div class="share-title">친구에게 공유하기 👇</div>
+        <div class="share-buttons">
+          <button class="share-btn share-kakao" onclick="shareKakao()">💬 카카오톡으로 공유</button>
+          <button class="share-btn share-link" onclick="copyLink()">🔗 링크 복사</button>
+          <button class="share-btn share-image" onclick="saveImage()">📸 이미지 저장</button>
+        </div>
+        <button class="btn-retry" onclick="showPage('main')">← 다른 테스트 하러 가기</button>
       </div>
-      <button class="btn-retry" onclick="showPage('main')">← 다른 테스트 하러 가기</button>
     </div>
   </div>
-</div>
 
-<!-- Toast -->
-<div class="toast" id="toast"></div>
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
 
-<!-- ─────────────────────────────────────────
+  <!-- ─────────────────────────────────────────
      📦 스크립트 로드 순서 (중요!)
      1. TESTS 전역 객체 초기화
      2. 테스트 데이터 파일들 (tests/*.js)  ← 새 테스트는 여기에 추가
      3. 엔진
      4. 메인 페이지 로직
 ───────────────────────────────────────────── -->
-<script>
-  // TESTS 전역 객체: 모든 테스트 데이터가 여기 등록됩니다.
-  const TESTS = {};
-</script>
+  <script>
+    // TESTS 전역 객체: 모든 테스트 데이터가 여기 등록됩니다.
+    const TESTS = {};
+  </script>
 
-<!-- ✅ 새 테스트 추가 시: tests/ 폴더에 파일 만들고 아래에 한 줄 추가! -->
-<script src="tests/coffee.js"></script>
-<script src="tests/office.js"></script>
-<!-- <script src="tests/mbti.js"></script> -->
-<script src="tests/test_20260227.js"></script>
-<script src="tests/test_20260227133722.js"></script>
-<script src="tests/ramen_type_test.js"></script>
-<script src="tests/his_habit_personality.js"></script>
-<script src="tests/travel_prep_type.js"></script>
-<script src="tests/do_i_like_this_person.js"></script>
-<script src="tests/test_20260227183041.js"></script>
-<script src="tests/test_20260227183908.js"></script>
-<script src="tests/test_20260227184244.js"></script>
-<script src="tests/mbti_psychology_test.js"></script>
-<script src="tests/dog_cat_personality.js"></script>
-<script src="tests/fox_bear_type.js"></script>
-<script src="tests/jjin_ramen_preference.js"></script>
-<script src="tests/why_phone_not_ringing.js"></script>
-<script src="tests/does_he_like_me.js"></script>
-<script src="tests/weather_20260301130642.js"></script>
+  <!-- ✅ 새 테스트 추가 시: tests/ 폴더에 파일 만들고 아래에 한 줄 추가! -->
+  <script src="tests/coffee.js"></script>
+  <script src="tests/office.js"></script>
+  <script src="tests/test_20260227133722.js"></script>
+  <script src="tests/ramen_type_test.js"></script>
+  <script src="tests/his_habit_personality.js"></script>
+  <script src="tests/travel_prep_type.js"></script>
+  <script src="tests/do_i_like_this_person.js"></script>
+  <script src="tests/mbti_psychology_test.js"></script>
+  <script src="tests/dog_cat_personality.js"></script>
+  <script src="tests/fox_bear_type.js"></script>
+  <script src="tests/jjin_ramen_preference.js"></script>
+  <script src="tests/why_phone_not_ringing.js"></script>
+  <script src="tests/does_he_like_me.js"></script>
+  <script src="tests/weather_20260301130642.js"></script>
+  <script src="tests/첫_데이트에서_드러나는_나의_연애_타_202603011523.js"></script>
+  <script src="tests/contact_style_love_type.js"></script>
 <!-- 새 테스트 추가 시 여기에 한 줄 추가 -->
 
-<script src="js/engine.js"></script>
-<script src="js/main.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/main.js"></script>
 
 </body>
+
 </html>
