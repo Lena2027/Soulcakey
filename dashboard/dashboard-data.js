@@ -1,6 +1,6 @@
 window.DASHBOARD_DATA = {
-  "generated": "2026-03-01 13:06:56",
-  "totalTests": 17,
+  "generated": "2026-03-01 15:14:36",
+  "totalTests": 22,
   "tests": [
     {
       "id": "coffee",
@@ -17,6 +17,22 @@ window.DASHBOARD_DATA = {
       "questionCount": 0,
       "resultCount": 1,
       "filename": "coffee",
+      "lastModified": "2026-03-01"
+    },
+    {
+      "id": "contact_style_love_type",
+      "title": "연락 스타일로 보는 나의 연애 유형",
+      "emoji": "💬",
+      "badge": "NEW",
+      "categories": [
+        "연애"
+      ],
+      "participantsLabel": "🔥 8.7만명",
+      "estimatedMinutes": 2,
+      "thumbColor": 2,
+      "questionCount": 0,
+      "resultCount": 0,
+      "filename": "contact_style_love_type",
       "lastModified": "2026-03-01"
     },
     {
@@ -283,6 +299,75 @@ window.DASHBOARD_DATA = {
       "questionCount": 0,
       "resultCount": 0,
       "filename": "why_phone_not_ringing",
+      "lastModified": "2026-03-01"
+    },
+    {
+      "id": "연락_스타일로_보는_나의_연애_유형_202603011612",
+      "title": "연락 스타일로 보는 나의 연애 유형",
+      "emoji": "💌",
+      "badge": "NEW",
+      "categories": [
+        "연애",
+        "심리",
+        "소통"
+      ],
+      "participantsLabel": "🔥 0명",
+      "estimatedMinutes": 3,
+      "thumbColor": 3,
+      "questionCount": 8,
+      "resultCount": 4,
+      "filename": "연락_스타일로_보는_나의_연애_유형_202603011612",
+      "lastModified": "2026-03-01"
+    },
+    {
+      "id": "첫_데이트에서_드러나는_나의_연애_타_202603011433",
+      "title": "첫 데이트에서 드러나는 나의 연애 타입",
+      "emoji": "💕",
+      "badge": "NEW",
+      "categories": [
+        "연애",
+        "성격"
+      ],
+      "participantsLabel": "🔥 0명",
+      "estimatedMinutes": 3,
+      "thumbColor": 1,
+      "questionCount": 8,
+      "resultCount": 4,
+      "filename": "첫_데이트에서_드러나는_나의_연애_타_202603011433",
+      "lastModified": "2026-03-01"
+    },
+    {
+      "id": "첫_데이트에서_드러나는_나의_연애_타_202603011523",
+      "title": "첫 데이트에서 드러나는 나의 연애 타입",
+      "emoji": "💕",
+      "badge": "NEW",
+      "categories": [
+        "연애",
+        "성격분석"
+      ],
+      "participantsLabel": "🔥 0명",
+      "estimatedMinutes": 3,
+      "thumbColor": 5,
+      "questionCount": 7,
+      "resultCount": 4,
+      "filename": "첫_데이트에서_드러나는_나의_연애_타_202603011523",
+      "lastModified": "2026-03-01"
+    },
+    {
+      "id": "첫_데이트에서_드러나는_나의_연애_타_202603011531",
+      "title": "첫 데이트에서 드러나는 나의 연애 타입",
+      "emoji": "💕",
+      "badge": "NEW",
+      "categories": [
+        "연애",
+        "심리"
+      ],
+      "participantsLabel": "🔥 1,247명",
+      "estimatedMinutes": 3,
+      "thumbColor": 1,
+      "questionCount": 8,
+      "resultCount": 4,
+      "filename": "첫_데이트에서_드러나는_나의_연애_타_202603011531",
       "lastModified": "2026-03-01"
     }
   ]
